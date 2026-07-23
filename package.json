@@ -46,7 +46,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "test": "node --test --import tsx/esm test/**/*.test.ts",
+    "test": "node --test --import tsx/esm test/*.test.ts",
     "typecheck": "tsc --noEmit",
     "context": "node ./dist/cli.js",
     "prepublishOnly": "npm run build && npm test"
