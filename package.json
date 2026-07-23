@@ -1,6 +1,6 @@
 {
   "name": "@krizic/repo-context",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Generate a single context.md snapshot of your repository (overview, file tree, and file contents) to feed to LLM coding agents.",
   "type": "module",
   "license": "MIT",
