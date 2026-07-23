@@ -1,0 +1,60 @@
+{
+  "name": "@krizic/repo-context",
+  "version": "0.1.0",
+  "description": "Generate a single context.md snapshot of your repository (overview, file tree, and file contents) to feed to LLM coding agents.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Vedran Krizic",
+  "homepage": "https://github.com/krizic/repo-context#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krizic/repo-context.git"
+  },
+  "bugs": {
+    "url": "https://github.com/krizic/repo-context/issues"
+  },
+  "keywords": [
+    "llm",
+    "ai",
+    "context",
+    "codegen",
+    "coding-agent",
+    "repository",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "repo-context": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "node --test --import tsx/esm test/**/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "context": "node ./dist/cli.js",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "tsup": "^8.2.4",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
+  }
+}
