@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   id-token: write # required for npm provenance
+  packages: write # required to publish to GitHub Packages
 
 jobs:
   publish:
@@ -57,3 +58,20 @@ jobs:
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Also publishes to GitHub Packages so released versions show up under
+      # the repo's "Packages" sidebar on GitHub, linked via the `repository`
+      # field in package.json. Uses the built-in GITHUB_TOKEN, no extra secret needed.
+      - name: Setup Node.js for GitHub Packages
+        if: steps.version-check.outputs.should_publish == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          registry-url: https://npm.pkg.github.com
+          scope: '@krizic'
+
+      - name: Publish to GitHub Packages
+        if: steps.version-check.outputs.should_publish == 'true'
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
